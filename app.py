@@ -5,6 +5,7 @@ import os
 import tensorflow as tf
 from PIL import Image
 from werkzeug.utils import secure_filename
+python -m pip install --upgrade pip
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
