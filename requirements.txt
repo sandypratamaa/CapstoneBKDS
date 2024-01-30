@@ -1,4 +1,5 @@
 pandas==1.3.5
+python -m pip install -r /mount/src/ta/requirements.txt
 numpy==1.21.6
 pytz==2022.1
 dateutil==2.8.2
