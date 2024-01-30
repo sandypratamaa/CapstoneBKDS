@@ -6,7 +6,6 @@ import tensorflow as tf
 from PIL import Image
 from werkzeug.utils import secure_filename
 
-python -m pip install --upgrade pip
 pip install --no-build-isolation git+https://github.com/Throvn/pychalk@b78493cfc1797774b09ea0b4632f83e558efc448
 
 
