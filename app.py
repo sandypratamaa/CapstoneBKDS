@@ -17,7 +17,7 @@ model = tf.keras.models.load_model("modelcorn.h5")
 corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
 
 # Define image size
-IMG_SIZE = (128, 128)
+IMG_SIZE = (299, 299)
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
