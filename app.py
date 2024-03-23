@@ -7,8 +7,8 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 import base64
 
-# Load background image
-background-image: url("jg2.jpg")
+# background image
+st.image('jg2.jpg', caption='mendeteksi kondisi tanaman jagung anda')
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
