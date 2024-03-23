@@ -5,6 +5,7 @@ import os
 import tensorflow as tf
 from PIL import Image
 from werkzeug.utils import secure_filename
+import base64
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
@@ -21,6 +22,19 @@ IMG_SIZE = (299, 299)
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
+
+# Menambahkan gambar latar belakang dari file lokal
+st.markdown(
+    """
+    <style>
+    body {
+        background-image: url("data:image/png;base64,{}");
+        background-size: cover;
+    }
+    </style>
+    """.format(base64.b64encode(open("jg.jpg", "rb").read()).decode()),
+    unsafe_allow_html=True
+)
 
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
