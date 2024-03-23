@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import base64
 
 # background image
-st.background('jg2.jpg')
+st.background(jg2.jpg)
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
