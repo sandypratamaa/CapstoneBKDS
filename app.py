@@ -23,8 +23,8 @@ IMG_SIZE = (299, 299)
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
-# Load background image
-background_image = jg2.jpg
+
+st.background("jg2.jpg")
 
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
