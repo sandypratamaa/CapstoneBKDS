@@ -1,25 +1,30 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+import os
+import tensorflow as tf
 from PIL import Image
+from werkzeug.utils import secure_filename
 import base64
-
-# Menambahkan gambar latar belakang dari file lokal
-def set_background(image):
-    encoded_image = base64.b64encode(image).decode()
-    background = f'''
-    <style>
-    .stApp {{
-        background-image: url('data:image/jpg;base64,{encoded_image}');
-        background-size: cover;
-    }}
-    </style>
-    '''
-    st.markdown(background, unsafe_allow_html=True)
 
 # Load background image
 background_image = Image.open("jg2.jpg")
 
-# Set background
-set_background(background_image.tobytes())
+# Set nilai default untuk hasil prediksi dan gambar yang diprediksi
+hasil_prediksi = '(none)'
+gambar_prediksi = '(none)'
+
+# Load model
+model = tf.keras.models.load_model("modelcorn.h5")
+
+# Define classes
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
+
+# Define image size
+IMG_SIZE = (299, 299)
+
+# Set Streamlit configuration
+st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
