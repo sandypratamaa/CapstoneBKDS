@@ -24,7 +24,7 @@ IMG_SIZE = (299, 299)
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
 # Load background image
-background_image = Image.open("jg2.jpg")
+background_image = jg2.jpg
 
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
