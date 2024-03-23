@@ -23,18 +23,6 @@ IMG_SIZE = (299, 299)
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
-# Menambahkan gambar latar belakang dari file lokal
-st.markdown(
-    """
-    <style>
-    body {
-        background-image:("jg.jpg");
-        background-size: cover;
-    }
-    </style>
-    """.format(base64.b64encode(open("jg.jpg", "rb").read()).decode()),
-    unsafe_allow_html=True
-)
 
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
