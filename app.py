@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import base64
 
 # Load background image
-background-image: ("jg2.jpg")
+background-image: url("jg2.jpg")
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
