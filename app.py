@@ -28,7 +28,7 @@ st.markdown(
     """
     <style>
     body {
-        background-image: url("data:image/png;base64,{}");
+        background-image:("jg.jpg");
         background-size: cover;
     }
     </style>
