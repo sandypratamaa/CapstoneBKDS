@@ -23,6 +23,9 @@ IMG_SIZE = (299, 299)
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
+#add image
+st.image(image, caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+
 # Add background image
 st.markdown(
     """
