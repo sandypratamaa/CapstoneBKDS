@@ -30,7 +30,7 @@ st.title("Welcome to Corn Disease Detection")
 #add image
 # Define image size
 IMG_SIZE = (299, 299)
-st.background(background="jg2.jpg", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+st.image(image="jg2.jpg", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
 if uploaded_file is not None:
     # Display the uploaded image
@@ -39,7 +39,7 @@ if uploaded_file is not None:
     st.write("Classifying...")
 
     # Predict
-    IMG_SIZE = (299, 299)
+  
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
 
