@@ -17,8 +17,6 @@ model = tf.keras.models.load_model("modelcorn.h5")
 # Define classes
 corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
 
-# Define image size
-IMG_SIZE = (299, 299)
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -30,6 +28,8 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpe
 # Main content
 st.title("Welcome to Corn Disease Detection")
 #add image
+# Define image size
+IMG_SIZE = (299, 299)
 st.image(image="jg2.jpg", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
 if uploaded_file is not None:
@@ -39,6 +39,7 @@ if uploaded_file is not None:
     st.write("Classifying...")
 
     # Predict
+    IMG_SIZE = (150, 150)
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
 
