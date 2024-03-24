@@ -28,7 +28,7 @@ st.markdown(
     """
     <style>
     .reportview-container {
-        background: url("jg2.jpg") center center;
+        background:("jg2.jpg") center;
         background-size: cover;
     }
     </style>
