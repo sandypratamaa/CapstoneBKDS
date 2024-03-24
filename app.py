@@ -23,6 +23,19 @@ IMG_SIZE = (299, 299)
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
+# Add background image
+st.markdown(
+    """
+    <style>
+    .reportview-container {
+        background: url("https://your-image-url/jg2.jpg") center center;
+        background-size: cover;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Sidebar
 st.sidebar.title("Corn Disease Detection")
 uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpeg"])
