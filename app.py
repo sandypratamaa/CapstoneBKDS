@@ -55,6 +55,6 @@ if uploaded_file is not None:
     st.success(f"Prediction: {hasil_prediksi}")
 
     # Display image with prediction
-    st.image(test_image, caption=f"Prediction: {hasil_prediksi}", use_column_width=True)
+    st.image(caption=f"Prediction: {hasil_prediksi}", use_column_width=True)
 else:
     st.info("Please upload an image to perform the prediction.")
