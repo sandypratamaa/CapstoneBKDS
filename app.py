@@ -30,7 +30,7 @@ st.title("Welcome to Corn Disease Detection")
 #add image
 # Define image size
 IMG_SIZE = (299, 299)
-st.image(image="jg.jpg", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+st.image(image="ss.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
 if uploaded_file is not None:
     # Display the uploaded image
