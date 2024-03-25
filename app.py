@@ -27,7 +27,7 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpe
 
 # Main content
 st.title("Welcome to Corn Disease Detection")
-st.caption("Aplikasi ini dapat membantu anda dalam mengklasifikasi kondisi tanaman jagung anda", color="black")
+st.caption("Aplikasi ini dapat membantu anda dalam mengklasifikasi kondisi tanaman jagung anda")
 
 #add image
 # Define image size
@@ -35,7 +35,7 @@ IMG_SIZE = (299, 299)
 st.image(image="ss.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
 #penjelasan
-st.caption("Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini", color="black")
+st.caption("Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini")
 
 if uploaded_file is not None:
     # Display the uploaded image
