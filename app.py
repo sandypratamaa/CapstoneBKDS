@@ -54,9 +54,9 @@ if uploaded_file is not None:
     # Display result
     st.success(f"Prediction: {hasil_prediksi}")
 
-st.subheader(":black[**Berikut merupakan penjelasan mengenai jenis-jenis penyakit pada tanaman jagung**]")
+st.subheader(":black[**Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung**]")
 
 st.caption(":black[**1.Corn Common Rust adalah penyakit tanaman jagung yang disebabkan oleh jamur bernama Puccinia sorghi. Penyakit ini sangat umum terjadi pada jagung dan dapat menyebabkan kerusakan pada tanaman, yang pada akhirnya dapat menyebabkan penurunan hasil panen.**]")
-st.text(":black[**2.Corn Gray Leaf Spot adalah penyakit tanaman jagung yang disebabkan oleh jamur bernama Cercospora zeae-maydis. Penyakit ini dapat menyebabkan kerusakan pada daun jagung dan dapat mengurangi hasil panen pada saat panen.**]")
+st.caption(":black[**2.Corn Gray Leaf Spot adalah penyakit tanaman jagung yang disebabkan oleh jamur bernama Cercospora zeae-maydis. Penyakit ini dapat menyebabkan kerusakan pada daun jagung dan dapat mengurangi hasil panen pada saat panen.**]")
 st.caption(":black[**3.Corn Northern Leaf Blight adalah penyakit tanaman jagung yang disebabkan oleh jamur bernama Exserohilum turcicum (dahulu disebut sebagai Helminthosporium turcicum). Penyakit ini dapat menyebabkan kerusakan pada daun jagung dan dapat mengurangi hasil panen.**]")
 st.caption(":black[**4.Corn Healty adalah kondisi bahwa tanaman jagung anda sehat.**]")
