@@ -22,7 +22,7 @@ corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
 # Sidebar
-st.sidebar.title("Corn Disease Detection", divider="rainbow")
+st.sidebar.title("Corn Disease Detection", divider='rainbow')
 uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpeg"])
 
 # Main content
