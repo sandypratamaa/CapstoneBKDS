@@ -17,7 +17,6 @@ model = tf.keras.models.load_model("modelcorn.h5")
 # Define classes
 corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
 
-
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
 
@@ -27,7 +26,7 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpe
 
 # Main content
 st.title("Welcome to Corn Disease Detection :corn:")
-st.caption(":black[**Aplikasi ini dapat membantu anda dalam mengklasifikasi kondisi tanaman jagung anda**]")
+st.caption("[**Aplikasi ini dapat membantu dalam mengklasifikasi kondisi tanaman jagung anda**]")
 
 #add image
 # Define image size
