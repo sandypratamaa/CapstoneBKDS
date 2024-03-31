@@ -27,6 +27,7 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpe
 # Main content
 st.title("Welcome to Corn Disease Detection :corn:")
 st.caption("**Aplikasi ini dapat membantu dalam mengklasifikasi kondisi tanaman jagung anda**")
+st.markdown("**Aplikasi ini dapat membantu dalam mengklasifikasi kondisi tanaman jagung anda**")
 
 #add image
 # Define image size
