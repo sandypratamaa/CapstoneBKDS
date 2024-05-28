@@ -46,19 +46,20 @@ if uploaded_file is not None:
 
     # Predict
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
-    img_array = np.expand_dims(test_image, 0)
+    img_array = np.array(test_image)
 
-    # Check if the uploaded image is a leaf or not (Simple heuristic check, replace with actual model if available)
-    # This is a placeholder and needs to be replaced with actual model or method to check leaf
-    def is_leaf(image):
-        # This is a simple heuristic and should be replaced by a proper model/method
-        # For demonstration, assume images with high green pixel counts are leaves
+    # Check if the uploaded image is a leaf or not (Improved heuristic check)
+    def is_leaf(image_array):
         green_threshold = 100
-        img_array = np.array(image)
-        green_pixels = np.sum((img_array[:,:,1] > green_threshold) & (img_array[:,:,0] < green_threshold) & (img_array[:,:,2] < green_threshold))
-        return green_pixels > (0.2 * img_array.size)
-    
-    if is_leaf(test_image):
+        green_pixels = np.sum((image_array[:,:,1] > green_threshold) & 
+                              (image_array[:,:,0] < green_threshold) & 
+                              (image_array[:,:,2] < green_threshold))
+        total_pixels = image_array.shape[0] * image_array.shape[1]
+        green_proportion = green_pixels / total_pixels
+        return green_proportion > 0.1  # Adjust this threshold based on your dataset
+
+    if is_leaf(img_array):
+        img_array = np.expand_dims(img_array, 0)
         predictions = model.predict(img_array)
         hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
         # Display result
