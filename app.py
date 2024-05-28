@@ -55,8 +55,13 @@ if uploaded_file is not None:
     # Display result
     st.success(f"Prediction: {hasil_prediksi}")
     
-else:
-    st.error("Gambar anda tidak dapat diprediksi. Silahkan unggah gambar daun jagung")
+    if max_pred > 0.5:  # Set a threshold to determine a valid prediction
+        hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
+        # Display result
+        st.success(f"Prediction: {hasil_prediksi}")
+    else:
+        st.error("Gambar tidak dapat diprediksi. Silakan unggah gambar daun jagung.")
+
     
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
