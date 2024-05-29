@@ -53,8 +53,8 @@ if uploaded_file is not None:
     hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
 
     # Display result
-    if st.success(f"Prediction: {hasil_prediksi}")
-    else st.error(f"Prediction: {hasil_prediksi} - Ini bukan bunga")
+    st.success(f"Prediction: {hasil_prediksi}")
+    st.error(f"Prediction: {hasil_prediksi} - Ini bukan daunjagung")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
