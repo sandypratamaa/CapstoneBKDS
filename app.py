@@ -55,8 +55,16 @@ if uploaded_file is not None:
     hasil_prediksi2 = notcorndiseases_classes[np.argmax(predictions[0])]
 
     # Display result
-    st.success(f"Prediction: {hasil_prediksi}")
-    st.success(f"Prediction: {hasil_prediksi2}")
+    #st.success(f"Prediction: {hasil_prediksi}")
+    #st.success(f"Prediction: {hasil_prediksi2}")
+    
+    # Menampilkan hasil prediksi pertama
+    if hasil_prediksi:
+       st.success(f"Prediction 1: {hasil_prediksi}")
+
+    # Menampilkan hasil prediksi kedua
+    if hasil_prediksi2:
+       st.success(f"Prediction 2: {hasil_prediksi2}")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
