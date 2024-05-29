@@ -41,7 +41,10 @@ if uploaded_file is not None:
 
     predictions = model.predict(img_array)
     prediction_index = np.argmax(predictions[0])
-    predicted_class = corndiseases_classes[prediction_index]
+    if prediction_index < len(corndiseases_classes):
+        predicted_class = corndiseases_classes[prediction_index]
+    else:
+        predicted_class = "Not a corn disease category"
 
     # Display result
     st.success(f"Prediction: {predicted_class}")
