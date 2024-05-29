@@ -44,27 +44,21 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
-if uploaded_file is not None:
-    try:
-        test_image = Image.open(uploaded_file).resize(IMG_SIZE)
-        img_array = np.array(test_image).reshape((1,) + IMG_SIZE + (3,))  # Adjust shape if necessary
+    # Predict
+  
+    test_image = Image.open(uploaded_file).resize(IMG_SIZE)
+    img_array = np.expand_dims(test_image, 0)
 
-        # Make the prediction
-        predictions = model.predict(img_array)
-        predicted_class_index = np.argmax(predictions[0])
-        hasil_prediksi = corndiseases_classes[predicted_class_index] 
-        if predicted_class_index < len(corndiseases_classes) 
-           
+    predictions = model.predict(img_array)
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[0,1,2,3])]
+    
+    # Kondisional untuk menampilkan pesan sukses atau pesan lain
+    if hasil_prediksi
+       st.success(f"Prediction: {hasil_prediksi}")
+    else:
+       st.error("Prediction is not classified correctly.")
 
-        # Display result
-        if hasil_prediksi in corndiseases_classes:
-            st.success(f"Prediction: {hasil_prediksi}")
-        else:
-            "bukan daun jagung"
-    except Exception as e:
-        st.error(f"Error processing the uploaded file: {e}")
-else:
-    st.info("Please upload an image file")
+   
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
