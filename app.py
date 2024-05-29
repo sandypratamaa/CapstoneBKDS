@@ -16,6 +16,7 @@ model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
 corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
+notcorndiseases_classes = ["bukan kategori corn disease detection"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -50,15 +51,12 @@ if uploaded_file is not None:
     img_array = np.expand_dims(test_image, 0)
 
     predictions = model.predict(img_array)
-    hasil_prediksi = corndiseases_classes[np.argmax(predictions[0,1,2,3])]
-    
-    # Kondisional untuk menampilkan pesan sukses atau pesan lain
-    if hasil_prediksi
-       st.success(f"Prediction: {hasil_prediksi}")
-    else:
-       st.error("Prediction is not classified correctly.")
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
+    hasil_prediksi2 = notcorndiseases_classes[np.argmax(predictions[0])]
 
-   
+    # Display result
+    st.success(f"Prediction: {hasil_prediksi}")
+    st.success(f"Prediction: {hasil_prediksi2}")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
