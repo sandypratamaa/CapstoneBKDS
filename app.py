@@ -50,15 +50,14 @@ img_array = np.expand_dims(test_image, 0)
 
 # Make the prediction
 predictions = model.predict(img_array)
-hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
-hasil_prediksi2 = "bukan kategori jagung"
+predicted_class_index = np.argmax(predictions[0])
+hasil_prediksi = corndiseases_classes[predicted_class_index] if predicted_class_index < len(corndiseases_classes) else "bukan daun jagung"
 
 # Display result
-
 if hasil_prediksi in corndiseases_classes:
     st.success(f"Prediction: {hasil_prediksi}")
-    else:
-       st.error(f"Prediction: {hasil_prediksi2}")
+else:
+    st.error(f"Prediction: {hasil_prediksi}")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
