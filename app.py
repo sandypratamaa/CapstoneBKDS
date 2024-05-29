@@ -63,7 +63,7 @@ if uploaded_file is not None:
        st.success(f"Prediction: {hasil_prediksi}")
 
     # Menampilkan hasil prediksi kedua
-    else hasil_prediksi2:
+    else hasil_prediksi:
        st.success(f"Prediction: {hasil_prediksi2}")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
