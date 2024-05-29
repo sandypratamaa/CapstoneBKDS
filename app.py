@@ -52,13 +52,15 @@ if uploaded_file is not None:
         # Make the prediction
         predictions = model.predict(img_array)
         predicted_class_index = np.argmax(predictions[0])
-        hasil_prediksi = corndiseases_classes[predicted_class_index] if predicted_class_index < len(corndiseases_classes) else "bukan daun jagung"
+        hasil_prediksi = corndiseases_classes[predicted_class_index] 
+        if predicted_class_index < len(corndiseases_classes) 
+           
 
         # Display result
         if hasil_prediksi in corndiseases_classes:
             st.success(f"Prediction: {hasil_prediksi}")
         else:
-            st.error(f"Prediction: {hasil_prediksi}")
+            "bukan daun jagung"
     except Exception as e:
         st.error(f"Error processing the uploaded file: {e}")
 else:
