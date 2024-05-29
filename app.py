@@ -44,14 +44,20 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
+# Load and preprocess the image
+test_image = Image.open(uploaded_file).resize(IMG_SIZE)
+img_array = np.expand_dims(test_image, 0)
+
 # Make the prediction
 predictions = model.predict(img_array)
 hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
 hasil_prediksi2 = "bukan kategori jagung"
 
 # Display result
+
 if hasil_prediksi in corndiseases_classes:
     st.success(f"Prediction: {hasil_prediksi}")
+    
 else:
     st.error(f"Prediction: {hasil_prediksi2}")
 
