@@ -57,9 +57,8 @@ hasil_prediksi2 = "bukan kategori jagung"
 
 if hasil_prediksi in corndiseases_classes:
     st.success(f"Prediction: {hasil_prediksi}")
-    
-else:
-    st.error(f"Prediction: {hasil_prediksi2}")
+    else:
+       st.error(f"Prediction: {hasil_prediksi2}")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
