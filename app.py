@@ -52,9 +52,12 @@ if uploaded_file is not None:
     predictions = model.predict(img_array)
     hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
     hasil_prediksi2 = "bukan kategori jagung"
+    
     # Display result
-    st.success(f"Prediction: {hasil_prediksi}")
-    st.error(f"Prediction: {hasil_prediksi2} ")
+    if
+      st.success(f"Prediction: {hasil_prediksi}")
+    else
+      st.error(f"Prediction: {hasil_prediksi2} ")
 
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
