@@ -64,8 +64,8 @@ if uploaded_file is not None:
                 st.info("Ini gambar kategori 3")
             elif predicted_class == "Corn Northern Leaf Blight":
                 st.info("Ini gambar kategori 4")
-                      else predicted_class == "non kategori":
-                          st.info("Ini bukan gambar kategori ")
+        else:
+            st.info("Ini bukan gambar kategori")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
