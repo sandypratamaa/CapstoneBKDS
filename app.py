@@ -36,7 +36,7 @@ st.image(image="ss.png", caption=None, width=None, use_column_width=None, clamp=
 # Penjelasan
 st.markdown("Aplikasi ini berguna untuk mendeteksi penyakit pada tanaman jagung menggunakan teknologi kecerdasan buatan (AI) dan algoritma deep learning untuk mendiagnosis penyakit pada tanaman jagung melalui gambar yang diunggah ke aplikasi ini. Dataset yang digunakan dalam sistem ini terdiri dari ribuan gambar tanaman jagung yang terinfeksi penyakit dan sehat. Saat pengguna mengunggah gambar tanaman jagung, sistem akan menganalisis gambar tersebut dan memberikan diagnosis. Algoritma deep learning digunakan karena dapat mempelajari fitur-fitur kompleks yang terkait dengan penyakit pada tanaman jagung dan menghasilkan diagnosis yang lebih akurat.")
 
-st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healthy yang akan di proses dibawah ini: ")
+st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healthy yang akan di proses dibawah ini:")
 
 if uploaded_file is not None:
     # Display the uploaded image
@@ -50,17 +50,22 @@ if uploaded_file is not None:
         img_array = np.expand_dims(test_image, 0)
 
         predictions = model.predict(img_array)
-        predicted_class = corndiseases_classes[np.argmax(predictions[0])]
+        predicted_class_index = np.argmax(predictions[0])
+        predicted_class = corndiseases_classes[predicted_class_index]
 
-        if predicted_class in corndiseases_classes:
-            hasil_prediksi = predicted_class
-            st.success(f"Prediction: {hasil_prediksi}")
+        # Display result with if-else logic
+        if predicted_class == "Corn Common Rust":
+            st.success(f"Prediction: {predicted_class} (ini gambar kategori 1)")
+        elif predicted_class == "Corn Gray Leaf Spot":
+            st.success(f"Prediction: {predicted_class} (ini gambar kategori 2)")
+        elif predicted_class == "Corn Healthy":
+            st.success(f"Prediction: {predicted_class} (ini gambar kategori 3)")
+        elif predicted_class == "Corn Northern Leaf Blight":
+            st.success(f"Prediction: {predicted_class} (ini gambar kategori 4)")
         else:
             st.error("Maaf tidak termasuk kategori")
     except Exception as e:
         st.error(f"Error: {e}")
-else:
-    st.warning("Maaf ini bukan kategori jagung")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
