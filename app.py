@@ -15,7 +15,7 @@ gambar_prediksi = '(none)'
 model = tf.keras.models.load_model("newplant_leaf_model.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "non predict"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
