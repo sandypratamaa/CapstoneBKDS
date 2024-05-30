@@ -64,7 +64,7 @@ if uploaded_file is not None:
                 st.info("Ini gambar kategori 3")
             elif predicted_class == "Corn Northern Leaf Blight":
                 st.info("Ini gambar kategori 4")
-            elif predicted_class == "non kategori":
+            else predicted_class == "non kategori":
                 st.info("Ini bukan gambar kategori ")
         
     except Exception as e:
