@@ -15,7 +15,7 @@ gambar_prediksi = '(none)'
 model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "non kategori"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -64,7 +64,7 @@ if uploaded_file is not None:
                 st.info("Ini gambar kategori 3")
             elif predicted_class == "Corn Northern Leaf Blight":
                 st.info("Ini gambar kategori 4")
-            elif predicted_class == "ini bukan termasuk kategori":
+            elif predicted_class == "non kategori":
                 st.info("Ini bukan gambar kategori ")
         
     except Exception as e:
