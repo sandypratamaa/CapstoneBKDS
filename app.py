@@ -55,13 +55,13 @@ if uploaded_file is not None:
         if predicted_class in corndiseases_classes:
             hasil_prediksi = predicted_class
             st.success(f"Prediction: {hasil_prediksi}")
-        else:
-            st.error("Maaf tidak termasuk kategori")
-    except Exception as e:
-        st.error(f"Error: {e}")
+                   else:
+                        st.error("Maaf tidak termasuk kategori")
+                   except Exception as e:
+                   st.error(f"Error: {e}")
 
-else:
-    st.warning("Maaf ini bukan kategori jagung")
+                        else:
+                               st.warning("Maaf ini bukan kategori jagung")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
