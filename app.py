@@ -49,15 +49,12 @@ if uploaded_file is not None:
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
 
-   
-
-    import numpy as np
 
 # Fungsi untuk melakukan prediksi
 def predict_disease(model, img_array, corndiseases_classes, threshold=0.5):
     # Melakukan prediksi dengan model
     predictions = model.predict(img_array)
-#----    
+    
     # Mendapatkan probabilitas tertinggi dan indeksnya
     max_prob = np.max(predictions[0])
     max_index = np.argmax(predictions[0])
@@ -70,13 +67,23 @@ def predict_disease(model, img_array, corndiseases_classes, threshold=0.5):
     
     return hasil_prediksi
 
-# Contoh penggunaan
-# img_array adalah array gambar input yang sudah dipreproses
-# model adalah model yang sudah dilatih
-# corndiseases_classes adalah daftar nama kelas penyakit jagung
+# Memuat model yang telah dilatih
+model = tf.keras.models.load_model('path_to_your_model.h5')
 
+# Misalnya img_array adalah array gambar input yang sudah dipreproses
+# Anda perlu menggantinya dengan proses preproses yang sesuai dengan model Anda
+# Contoh: img_array = preprocess_image('path_to_image.jpg')
+
+# Misalnya corndiseases_classes adalah daftar nama kelas penyakit jagung
+corndiseases_classes = ['Class1', 'Class2', 'Class3']  # Sesuaikan dengan kelas Anda
+
+# Pastikan img_array adalah numpy array dan memiliki shape yang benar
+# Contoh: img_array = np.expand_dims(img_array, axis=0)  # Jika input adalah gambar tunggal
+
+# Memanggil fungsi prediksi
 hasil_prediksi = predict_disease(model, img_array, corndiseases_classes)
 print(hasil_prediksi)
+
 #---
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
