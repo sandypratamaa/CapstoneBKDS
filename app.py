@@ -1,7 +1,11 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
+import os
 import tensorflow as tf
 from PIL import Image
+from werkzeug.utils import secure_filename
+import base64
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
@@ -60,8 +64,9 @@ if uploaded_file is not None:
                 st.info("Ini gambar kategori 3")
             elif predicted_class == "Corn Northern Leaf Blight":
                 st.info("Ini gambar kategori 4")
-        else:
-            st.error("Maaf tidak termasuk kategori")
+            elif predicted_class == "ini bukan termasuk kategori":
+                st.info("Ini bukan gambar kategori ")
+        
     except Exception as e:
         st.error(f"Error: {e}")
 
