@@ -50,10 +50,13 @@ if uploaded_file is not None:
         img_array = np.expand_dims(test_image, 0)
 
         predictions = model.predict(img_array)
-        hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
+        predicted_class = corndiseases_classes[np.argmax(predictions[0])]
 
-        # Display result
-        st.success(f"Prediction: {hasil_prediksi}")
+        if predicted_class in corndiseases_classes:
+            hasil_prediksi = predicted_class
+            st.success(f"Prediction: {hasil_prediksi}")
+        else:
+            st.error("Maaf tidak termasuk kategori")
     except Exception as e:
         st.error(f"Error: {e}")
 
