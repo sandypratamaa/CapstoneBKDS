@@ -1,11 +1,7 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
-import os
 import tensorflow as tf
 from PIL import Image
-from werkzeug.utils import secure_filename
-import base64
 
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
@@ -53,15 +49,17 @@ if uploaded_file is not None:
         predicted_class_index = np.argmax(predictions[0])
         predicted_class = corndiseases_classes[predicted_class_index]
 
-        # Display result with if-else logic
-        if predicted_class == "Corn Common Rust":
-            st.success(f"Prediction: {predicted_class} (ini gambar kategori 1)")
-        elif predicted_class == "Corn Gray Leaf Spot":
-            st.success(f"Prediction: {predicted_class} (ini gambar kategori 2)")
-        elif predicted_class == "Corn Healthy":
-            st.success(f"Prediction: {predicted_class} (ini gambar kategori 3)")
-        elif predicted_class == "Corn Northern Leaf Blight":
-            st.success(f"Prediction: {predicted_class} (ini gambar kategori 4)")
+        # Verifikasi tambahan untuk memeriksa apakah hasil prediksi sesuai dengan kelas yang didefinisikan
+        if predicted_class in corndiseases_classes:
+            st.success(f"Prediction: {predicted_class}")
+            if predicted_class == "Corn Common Rust":
+                st.info("Ini gambar kategori 1")
+            elif predicted_class == "Corn Gray Leaf Spot":
+                st.info("Ini gambar kategori 2")
+            elif predicted_class == "Corn Healthy":
+                st.info("Ini gambar kategori 3")
+            elif predicted_class == "Corn Northern Leaf Blight":
+                st.info("Ini gambar kategori 4")
         else:
             st.error("Maaf tidak termasuk kategori")
     except Exception as e:
