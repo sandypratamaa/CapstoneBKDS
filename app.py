@@ -54,21 +54,20 @@ if uploaded_file is not None:
         predicted_class = corndiseases_classes[predicted_class_index]
 
         # Verifikasi tambahan untuk memeriksa apakah hasil prediksi sesuai dengan kelas yang didefinisikan
-       
-if predicted_class in corndiseases_classes:
-    st.success(f"Prediction: {predicted_class}")
-    if predicted_class == "Corn Common Rust":
-        st.info("Ini gambar kategori 1")
-    elif predicted_class == "Corn Gray Leaf Spot":
-        st.info("Ini gambar kategori 2")
-    elif predicted_class == "Corn Healthy":
-        st.info("Ini gambar kategori 3")
-    elif predicted_class == "Corn Northern Leaf Blight":
-        st.info("Ini gambar kategori 4")
-else:
-    st.info("Ini bukan gambar kategori")
-
-      
+        if predicted_class in corndiseases_classes:
+            st.success(f"Prediction: {predicted_class}")
+            if predicted_class == "Corn Common Rust":
+                st.info("Ini gambar kategori 1")
+            elif predicted_class == "Corn Gray Leaf Spot":
+                st.info("Ini gambar kategori 2")
+            elif predicted_class == "Corn Healthy":
+                st.info("Ini gambar kategori 3")
+            elif predicted_class == "Corn Northern Leaf Blight":
+                st.info("Ini gambar kategori 4")
+        else:
+            st.info("Ini bukan gambar kategori")
+    except Exception as e:
+        st.error(f"Error: {e}")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
