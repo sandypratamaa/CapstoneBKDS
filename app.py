@@ -51,11 +51,13 @@ if uploaded_file is not None:
 
    
 
-    # Fungsi untuk melakukan prediksi
-    def predict_disease(model, img_array, corndiseases_classes, threshold=0.5):
+    import numpy as np
+
+# Fungsi untuk melakukan prediksi
+def predict_disease(model, img_array, corndiseases_classes, threshold=0.5):
     # Melakukan prediksi dengan model
     predictions = model.predict(img_array)
-    
+#----    
     # Mendapatkan probabilitas tertinggi dan indeksnya
     max_prob = np.max(predictions[0])
     max_index = np.argmax(predictions[0])
@@ -73,10 +75,9 @@ if uploaded_file is not None:
 # model adalah model yang sudah dilatih
 # corndiseases_classes adalah daftar nama kelas penyakit jagung
 
-    hasil_prediksi = predict_disease(model, img_array, corndiseases_classes)
-    print(hasil_prediksi)
-
-
+hasil_prediksi = predict_disease(model, img_array, corndiseases_classes)
+print(hasil_prediksi)
+#---
 st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
 
 st.markdown("1.Corn Common Rust atau karat jagung adalah penyakit yang disebabkan oleh jamur Puccinia sorghi. Penyakit ini umum terjadi pada tanaman jagung di berbagai daerah dengan iklim yang hangat dan lembap. Gejalanya meliputi adanya bercak-bercak berwarna kuning atau oranye pada daun tanaman jagung. Infeksi karat jagung biasanya tidak menyebabkan kerusakan yang serius pada hasil panen, tetapi dapat mengurangi pertumbuhan dan produktivitas tanaman jika serangan parah terjadi.")
