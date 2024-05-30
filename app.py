@@ -54,7 +54,7 @@ if uploaded_file is not None:
         predicted_class = corndiseases_classes[predicted_class_index]
 
         # Verifikasi tambahan untuk memeriksa apakah hasil prediksi sesuai dengan kelas yang didefinisikan
-        if predicted_class in corndiseases_classes:
+        if predicted_class in corndiseases_classes[:-1]:  # Exclude "non kategori" for specific categories
             st.success(f"Prediction: {predicted_class}")
             if predicted_class == "Corn Common Rust":
                 st.info("Ini gambar kategori 1")
