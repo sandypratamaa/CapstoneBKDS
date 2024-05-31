@@ -10,7 +10,7 @@ hasil_prediksi = '(none)'
 gambar_prediksi = '(none)'
 
 # Load model
-model_path = "pplant_leaf_model.h5"
+model_path = "new_pplant_leaf_model.h5"
 if os.path.exists(model_path):
     try:
         model = tf.keras.models.load_model(model_path)
