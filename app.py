@@ -12,7 +12,7 @@ hasil_prediksi = '(none)'
 gambar_prediksi = '(none)'
 
 # Load model
-model = tf.keras.models.load_model("plant_leaf_modell.h5")
+model = tf.keras.models.load_model("pplant_leaf_model.h5")
 
 # Define classes
 corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "Non-Predict"]
