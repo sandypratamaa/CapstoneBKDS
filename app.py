@@ -15,7 +15,7 @@ gambar_prediksi = '(none)'
 model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "NON DETECT"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "Non detect"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -45,27 +45,25 @@ if uploaded_file is not None:
     st.write("Classifying...")
 
     # Predict
+    if:
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
+    
 
     predictions = model.predict(img_array)
     hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
-
-    # Determine if the prediction is within the known classes or not
-    if hasil_prediksi == "Corn Common Rust":
-        st.success("Prediction: Corn Common Rust")
-    elif hasil_prediksi == "Corn Gray Leaf Spot":
-        st.success("Prediction: Corn Gray Leaf Spot")
-    elif hasil_prediksi == "Corn Healthy":
-        st.success("Prediction: Corn Healthy")
-    elif hasil_prediksi == "Corn Northern Leaf Blight":
-        st.success("Prediction: Corn Northern Leaf Blight")
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[1])]
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[2])]
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[3])]
     else:
-        st.warning("Prediction: NON DETECT (The image does not match any known categories)")
+        print("non predict")
 
-st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
+    # Display result
+    st.success(f"Prediction: {hasil_prediksi}")
 
-st.markdown("1. Corn Common Rust atau karat jagung adalah penyakit yang disebabkan oleh jamur Puccinia sorghi. Penyakit ini umum terjadi pada tanaman jagung di berbagai daerah dengan iklim yang hangat dan lembap. Gejalanya meliputi adanya bercak-bercak berwarna kuning atau oranye pada daun tanaman jagung. Infeksi karat jagung biasanya tidak menyebabkan kerusakan yang serius pada hasil panen, tetapi dapat mengurangi pertumbuhan dan produktivitas tanaman jika serangan parah terjadi.")
-st.markdown("2. Corn Gray Leaf Spot atau bercak daun abu-abu pada jagung disebabkan oleh jamur Cercospora zeae-maydis. Penyakit ini biasanya terjadi pada pertengahan hingga akhir musim tanam dan lebih umum terjadi di daerah yang lembap. Gejala utamanya adalah adanya bercak-bercak berwarna abu-abu atau coklat kehitaman pada daun jagung. Serangan berat dapat menyebabkan penurunan produksi dan kualitas jagung.")
-st.markdown("3. Corn Northern Leaf Blight atau bercak daun utara pada jagung disebabkan oleh jamur Exserohilum turcicum. Penyakit ini biasanya terjadi pada musim panas yang lembap dan hangat. Gejalanya meliputi adanya bercak-bercak berwarna coklat atau hijau keabu-abuan pada daun tanaman jagung. Serangan yang parah dapat menyebabkan kerusakan pada daun, mengurangi efisiensi fotosintesis, dan berpotensi mengurangi hasil panen.")
-st.markdown("4. Corn Healty adalah kondisi bahwa tanaman jagung anda dalam kondisi sehat.")
+st.subheader(" Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung ")
+
+st.markdown("1.Corn Common Rust atau karat jagung adalah penyakit yang disebabkan oleh jamur Puccinia sorghi. Penyakit ini umum terjadi pada tanaman jagung di berbagai daerah dengan iklim yang hangat dan lembap. Gejalanya meliputi adanya bercak-bercak berwarna kuning atau oranye pada daun tanaman jagung. Infeksi karat jagung biasanya tidak menyebabkan kerusakan yang serius pada hasil panen, tetapi dapat mengurangi pertumbuhan dan produktivitas tanaman jika serangan parah terjadi.")
+st.markdown("2.Corn Gray Leaf Spot atau bercak daun abu-abu pada jagung disebabkan oleh jamur Cercospora zeae-maydis. Penyakit ini biasanya terjadi pada pertengahan hingga akhir musim tanam dan lebih umum terjadi di daerah yang lembap. Gejala utamanya adalah adanya bercak-bercak berwarna abu-abu atau coklat kehitaman pada daun jagung. Serangan berat dapat menyebabkan penurunan produksi dan kualitas jagung.")
+st.markdown("3.Corn Northern Leaf Blight atau bercak daun utara pada jagung disebabkan oleh jamur Exserohilum turcicum. Penyakit ini biasanya terjadi pada musim panas yang lembap dan hangat. Gejalanya meliputi adanya bercak-bercak berwarna coklat atau hijau keabu-abuan pada daun tanaman jagung. Serangan yang parah dapat menyebabkan kerusakan pada daun, mengurangi efisiensi fotosintesis, dan berpotensi mengurangi hasil panen.")
+st.markdown("4.Corn Healty adalah kondisi bahwa tanaman jagung anda dalam kondisi sehat.")
