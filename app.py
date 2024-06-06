@@ -52,11 +52,22 @@ if uploaded_file is not None:
     predicted_class_index = np.argmax(predictions[0])
     hasil_prediksi = corndiseases_classes[predicted_class_index]
 
-    # Determine if the prediction is within the known classes or not
-    if hasil_prediksi in ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]:
-        st.success(f"Prediction: {hasil_prediksi}")
+    kategori 1 = Corn Healthy
+    kategori 2 = Corn Gray Leaf Spot
+    kategori 3 = Corn Common Rust
+    kategori 4 = Corn Northern Leaf Blight
+
+
+    if gambar==kategori 1:
+        print(ini gambar kategori 1)
+    elif gambar==kategori 2:
+        print(ini gambar kategori 2)
+    elif gambar==kategori 3:
+        print(ini gambar kategori 3)
+    elif gambar==kategori 4:
+        print(ini gambar kategori 4)
     else:
-        st.warning("Prediction: NON DETECT (The image does not match any known categories)")
+        print(bukan termasuk kategori)
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
