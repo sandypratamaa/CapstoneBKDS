@@ -9,13 +9,12 @@ import base64
 
 # Set default values for prediction result and predicted image
 hasil_prediksi = '(none)'
-gambar_prediksi = '(none)'
 
 # Load model
 model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "Non detect"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -43,21 +42,25 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
-    # Predict
-    test_image = Image.open(uploaded_file).resize(IMG_SIZE)
-    img_array = np.expand_dims(test_image, 0)
+    try:
+        # Predict
+        test_image = Image.open(uploaded_file).resize(IMG_SIZE)
+        img_array = np.expand_dims(test_image, 0)  # Add batch dimension
 
-    predictions = model.predict(img_array)
-    predicted_class_index = np.argmax(predictions[0])
+        predictions = model.predict(img_array)
+        predicted_class_index = np.argmax(predictions[0])
 
-    # Validate prediction
-    if 0 <= predicted_class_index < len(corndiseases_classes):
-        hasil_prediksi = corndiseases_classes[predicted_class_index]
-    else:
-        hasil_prediksi = "non predict"
+        # Validate prediction
+        if 0 <= predicted_class_index < len(corndiseases_classes):
+            hasil_prediksi = corndiseases_classes[predicted_class_index]
+        else:
+            hasil_prediksi = "non detect"
 
-    # Display result
-    st.success(f"Prediction: {hasil_prediksi}")
+        # Display result
+        st.success(f"Prediction: {hasil_prediksi}")
+
+    except Exception as e:
+        st.error(f"Error in prediction: {e}")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
