@@ -15,7 +15,7 @@ gambar_prediksi = '(none)'
 model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "NON DETECT"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -38,35 +38,30 @@ st.markdown("Aplikasi ini berguna untuk mendeteksi penyakit pada tanaman jagung 
 
 st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini : ")
 
-# Assuming corndiseases_classes is a list of class names
-corndiseases_classes = ['common', 'gray', 'non predict','northern']  # Replace with actual class names
-
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
-
 if uploaded_file is not None:
     # Display the uploaded image
     st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
     st.write("")
     st.write("Classifying...")
 
-    # Load and preprocess the image
+    # Predict
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
 
-    # Make prediction
     predictions = model.predict(img_array)
-    predicted_class_index = np.argmax(predictions[0])
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])]
 
-    # Validate prediction
-    if 0 <= predicted_class_index < len(corndiseases_classes):
-        hasil_prediksi = corndiseases_classes[predicted_class_index]
+    # Determine if the prediction is within the known classes or not
+    if hasil_prediksi == "Corn Common Rust":
+        st.success("Prediction: Corn Common Rust")
+    elif hasil_prediksi == "Corn Gray Leaf Spot":
+        st.success("Prediction: Corn Gray Leaf Spot")
+    elif hasil_prediksi == "Corn Healthy":
+        st.success("Prediction: Corn Healthy")
+    elif hasil_prediksi == "Corn Northern Leaf Blight":
+        st.success("Prediction: Corn Northern Leaf Blight")
     else:
-        hasil_prediksi = "non predict"
-
-    # Output the result
-    st.write(f"Prediction: {hasil_prediksi}")
-
-   
+        st.warning("Prediction: NON DETECT (The image does not match any known categories)")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
@@ -74,5 +69,3 @@ st.markdown("1. Corn Common Rust atau karat jagung adalah penyakit yang disebabk
 st.markdown("2. Corn Gray Leaf Spot atau bercak daun abu-abu pada jagung disebabkan oleh jamur Cercospora zeae-maydis. Penyakit ini biasanya terjadi pada pertengahan hingga akhir musim tanam dan lebih umum terjadi di daerah yang lembap. Gejala utamanya adalah adanya bercak-bercak berwarna abu-abu atau coklat kehitaman pada daun jagung. Serangan berat dapat menyebabkan penurunan produksi dan kualitas jagung.")
 st.markdown("3. Corn Northern Leaf Blight atau bercak daun utara pada jagung disebabkan oleh jamur Exserohilum turcicum. Penyakit ini biasanya terjadi pada musim panas yang lembap dan hangat. Gejalanya meliputi adanya bercak-bercak berwarna coklat atau hijau keabu-abuan pada daun tanaman jagung. Serangan yang parah dapat menyebabkan kerusakan pada daun, mengurangi efisiensi fotosintesis, dan berpotensi mengurangi hasil panen.")
 st.markdown("4. Corn Healty adalah kondisi bahwa tanaman jagung anda dalam kondisi sehat.")
-
-
