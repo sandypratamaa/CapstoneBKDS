@@ -38,36 +38,35 @@ st.markdown("Aplikasi ini berguna untuk mendeteksi penyakit pada tanaman jagung 
 
 st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini : ")
 
+# Assuming corndiseases_classes is a list of class names
+corndiseases_classes = ['class1', 'class2', 'class3','clas 4']  # Replace with actual class names
+
+uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+
 if uploaded_file is not None:
     # Display the uploaded image
     st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
     st.write("")
     st.write("Classifying...")
 
-    # Predict
+    # Load and preprocess the image
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
 
+    # Make prediction
     predictions = model.predict(img_array)
     predicted_class_index = np.argmax(predictions[0])
-    hasil_prediksi = corndiseases_classes[predicted_class_index]
 
-    kategori 1 = Corn Healthy
-    kategori 2 = Corn Gray Leaf Spot
-    kategori 3 = Corn Common Rust
-    kategori 4 = Corn Northern Leaf Blight
-
-
-    if gambar==kategori 1:
-        print(ini gambar kategori 1)
-    elif gambar==kategori 2:
-        print(ini gambar kategori 2)
-    elif gambar==kategori 3:
-        print(ini gambar kategori 3)
-    elif gambar==kategori 4:
-        print(ini gambar kategori 4)
+    # Validate prediction
+    if 0 <= predicted_class_index < len(corndiseases_classes):
+        hasil_prediksi = corndiseases_classes[predicted_class_index]
     else:
-        print(bukan termasuk kategori)
+        hasil_prediksi = "non predict"
+
+    # Output the result
+    st.write(f"Prediction: {hasil_prediksi}")
+
+   
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
