@@ -46,7 +46,7 @@ if uploaded_file is not None:
 
     # Predict
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
-    img_array = np.expand_dims(test_image, 0)
+    img_array = np.expand_dims(test_image, 0) / 255.0  # Normalize the image
 
     predictions = model.predict(img_array)
     max_prob_index = np.argmax(predictions)
