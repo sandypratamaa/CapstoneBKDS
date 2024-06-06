@@ -52,7 +52,7 @@ if uploaded_file is not None:
     max_prob = np.max(predictions[0])
     pred_class = np.argmax(predictions[0])
     
-    if max_prob < 0.6:  # Set a threshold for confidence, e.g., 60%
+    if max_prob < 0.7:  # Set a threshold for confidence, e.g., 60%
         hasil_prediksi = "NON DETECT"
     else:
         hasil_prediksi = corndiseases_classes[pred_class]
