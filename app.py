@@ -7,7 +7,6 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 import base64
 
-
 # Set nilai default untuk hasil prediksi dan gambar yang diprediksi
 hasil_prediksi = '(none)'
 gambar_prediksi = '(none)'
@@ -50,14 +49,14 @@ if uploaded_file is not None:
     img_array = np.expand_dims(test_image, 0) / 255.0  # Normalize the image
 
     predictions = model.predict(img_array)
-    max_prob_index = np.argmax(predictions)
+    max_prob_index = np.argmax(predictions[0])
     max_prob = predictions[0][max_prob_index]
 
-    # Check if the highest probability is above the threshold
-    if max_prob < threshold:
-        hasil_prediksi = "NON DETECT"
-    else:
+    # Check if the highest probability is above the threshold and belongs to known classes
+    if max_prob >= threshold:
         hasil_prediksi = corndiseases_classes[max_prob_index]
+    else:
+        hasil_prediksi = "NON DETECT"
 
     # Display result
     st.success(f"Prediction: {hasil_prediksi}")
@@ -68,3 +67,4 @@ st.markdown("1. **Corn Common Rust**: Karat jagung adalah penyakit yang disebabk
 st.markdown("2. **Corn Gray Leaf Spot**: Bercak daun abu-abu pada jagung disebabkan oleh jamur *Cercospora zeae-maydis*. Penyakit ini biasanya terjadi pada pertengahan hingga akhir musim tanam dan lebih umum terjadi di daerah yang lembap. Gejala utamanya adalah adanya bercak-bercak berwarna abu-abu atau coklat kehitaman pada daun jagung. Serangan berat dapat menyebabkan penurunan produksi dan kualitas jagung.")
 st.markdown("3. **Corn Northern Leaf Blight**: Bercak daun utara pada jagung disebabkan oleh jamur *Exserohilum turcicum*. Penyakit ini biasanya terjadi pada musim panas yang lembap dan hangat. Gejalanya meliputi adanya bercak-bercak berwarna coklat atau hijau keabu-abuan pada daun tanaman jagung. Serangan yang parah dapat menyebabkan kerusakan pada daun, mengurangi efisiensi fotosintesis, dan berpotensi mengurangi hasil panen.")
 st.markdown("4. **Corn Healthy**: Kondisi bahwa tanaman jagung anda dalam kondisi sehat.")
+
