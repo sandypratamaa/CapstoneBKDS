@@ -39,7 +39,7 @@ st.markdown("Aplikasi ini berguna untuk mendeteksi penyakit pada tanaman jagung 
 st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini : ")
 
 # Assuming corndiseases_classes is a list of class names
-corndiseases_classes = ['class1', 'class2', 'class3','clas 4']  # Replace with actual class names
+corndiseases_classes = ['common', 'gray', 'non predict','northern']  # Replace with actual class names
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
