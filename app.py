@@ -15,7 +15,7 @@ gambar_prediksi = '(none)'
 model = tf.keras.models.load_model("modelcorn.h5")
 
 # Define classes
-corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight", "NON DETECT"]
+corndiseases_classes = ["Corn Common Rust", "Corn Gray Leaf Spot", "Corn Healthy", "Corn Northern Leaf Blight"]
 
 # Set Streamlit configuration
 st.set_page_config(page_title="Corn Disease Detection", page_icon=":corn:", layout="wide")
@@ -28,15 +28,15 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpe
 st.title("Welcome to Corn Disease Detection :corn:")
 st.markdown("Aplikasi ini dapat membantu dalam mengklasifikasi kondisi tanaman jagung anda")
 
-#add image
+# Add image
 # Define image size
 IMG_SIZE = (299, 299)
 st.image(image="ss.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
-#penjelasan
+# Penjelasan
 st.markdown("Aplikasi ini berguna untuk mendeteksi penyakit pada tanaman jagung menggunakan teknologi kecerdasan buatan (AI) dan algoritma deep learning untuk mendiagnosis penyakit pada tanaman jagung melalui gambar yang diunggah ke aplikasi ini. Dataset yang digunakan dalam sistem ini terdiri dari ribuan gambar tanaman jagung yang terinfeksi penyakit dan sehat. Saat pengguna mengunggah gambar tanaman jagung, sistem akan menganalisis gambar tersebut dan memberikan diagnosis. Algoritma deep learning digunakan karena dapat mempelajari fitur-fitur kompleks yang terkait dengan penyakit pada tanaman jagung dan menghasilkan diagnosis yang lebih akurat.")
 
-st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healty yang akan di proses dibawah ini : ")
+st.markdown(":corn: Terdapat 4 jenis kategori yang aplikasi dapat deteksi yaitu Corn Common Rust, Corn Northern Leaf Blight, Corn Gray Leaf Spot, dan Corn Healthy yang akan di proses dibawah ini:")
 
 if uploaded_file is not None:
     # Display the uploaded image
@@ -47,18 +47,17 @@ if uploaded_file is not None:
     # Predict
     test_image = Image.open(uploaded_file).resize(IMG_SIZE)
     img_array = np.expand_dims(test_image, 0)
+    img_array = np.array(img_array) / 255.0  # Normalize image
 
     predictions = model.predict(img_array)
     max_prob = np.max(predictions[0])
-    pred_class = np.argmax(predictions[0])
-    
-    if max_prob < 0.6:  # Set a threshold for confidence, e.g., 60%
-        hasil_prediksi = "NON DETECT"
-    else:
-        hasil_prediksi = corndiseases_classes[pred_class]
+    hasil_prediksi = corndiseases_classes[np.argmax(predictions[0])] if max_prob > 0.5 else "NON DETECT"
 
     # Display result
-    st.success(f"Prediction: {hasil_prediksi}")
+    if hasil_prediksi in corndiseases_classes:
+        st.success(f"Prediction: {hasil_prediksi}")
+    else:
+        st.warning("Prediction: NON DETECT (The image does not match any known categories)")
 
 st.subheader("Penjelasan mengenai jenis-jenis penyakit pada tanaman jagung")
 
